@@ -30,8 +30,8 @@ ENV OIDC_REDIRECT_URI="http://localhost/redirect_uri"
 ENV OIDC_CRYPTO_PASSPHRASE="I should be a random password. Please set me."
 ENV BACKEND_URL="http://10.0.0.1"
 
-COPY conf/00-hbp-auth.conf /etc/apache2/sites-enabled/
-# COPY conf/ports.conf /etc/apache2/
+COPY config/00-hbp-auth.conf /etc/apache2/sites-enabled/
+# COPY config/ports.conf /etc/apache2/
 
 EXPOSE 80
 
