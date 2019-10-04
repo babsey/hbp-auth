@@ -30,8 +30,8 @@ ENV SERVER_NAME=localhost \
     OIDC_CRYPTO_PASSPHRASE="I should be a random password. Please set me." \
     BACKEND_URL="http://10.0.0.1"
 
-COPY config/00-hbp-auth.conf /etc/apache2/sites-enabled/ \
-     config/ports.conf /etc/apache2/
+COPY config/00-hbp-auth.conf /etc/apache2/sites-enabled/
+COPY config/ports.conf /etc/apache2/
 
 EXPOSE 8080
 
