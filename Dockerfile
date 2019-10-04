@@ -23,12 +23,17 @@ RUN a2dissite 000-default
 RUN ln -sf /proc/self/fd/1 /var/log/apache2/other_vhosts_access.log && \
     ln -sf /proc/self/fd/2 /var/log/apache2/error.log
 
-COPY 00-hbp-auth.conf /etc/apache2/sites-enabled/
-COPY OIDC_vars.sh .
+ENV SERVER_NAME=localhost
+ENV OIDC_CLIENT_ID="1234567890"
+ENV OIDC_CLIENT_SECRET="1234567890"
+ENV OIDC_REDIRECT_URI="http://localhost/redirect_uri"
+ENV OIDC_CRYPTO_PASSPHRASE="I should be a random password. Please set me."
+ENV BACKEND_URL="http://10.0.0.1"
 
-RUN . ./OIDC_vars.sh
+COPY conf/00-hbp-auth.conf /etc/apache2/sites-enabled/
+# COPY conf/ports.conf /etc/apache2/
 
 EXPOSE 80
 
 RUN mkdir /var/lock/apache2 /var/run/apache2
-CMD . /OIDC_vars.sh && . /etc/apache2/envvars && apache2 -DFOREGROUND
+CMD . /etc/apache2/envvars && apache2 -DFOREGROUND
