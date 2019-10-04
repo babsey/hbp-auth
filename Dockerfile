@@ -20,7 +20,8 @@ RUN a2dissite 000-default
 # send logs to stderr and stdout
 # see : https://serverfault.com/questions/711168/writing-apache2-logs-to-stdout-stderr
 #
-RUN ln -sf /proc/self/fd/1 /var/log/apache2/other_vhosts_access.log && \
+RUN chmod -R 777 /var/log/apache2 \
+    ln -sf /proc/self/fd/1 /var/log/apache2/other_vhosts_access.log && \
     ln -sf /proc/self/fd/2 /var/log/apache2/error.log
 
 ENV SERVER_NAME=localhost \
@@ -35,7 +36,6 @@ COPY config/ports.conf /etc/apache2/
 
 EXPOSE 8080
 
-RUN mkdir /var/lock/apache2 /var/run/apache2
-RUN chmod -R 777 /var/log/apache2
-
+RUN mkdir /var/lock/apache2 /var/run/apache2 \
+    chmod -R 777 /var/lock/apache2 /var/run/apache2
 CMD . /etc/apache2/envvars && apache2 -DFOREGROUND
