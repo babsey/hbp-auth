@@ -29,7 +29,7 @@ ENV SERVER_NAME=localhost \
     OIDC_CLIENT_SECRET="1234567890" \
     OIDC_REDIRECT_URI="http://localhost/redirect_uri" \
     OIDC_CRYPTO_PASSPHRASE="I should be a random password. Please set me." \
-    BACKEND_URL="http://10.0.0.1"
+    CLUSTER_IP="0.0.0.0"
 
 COPY config/00-hbp-auth.conf /etc/apache2/sites-enabled/
 COPY config/ports.conf /etc/apache2/
