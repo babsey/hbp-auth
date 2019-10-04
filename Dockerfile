@@ -31,9 +31,9 @@ ENV OIDC_CRYPTO_PASSPHRASE="I should be a random password. Please set me."
 ENV BACKEND_URL="http://10.0.0.1"
 
 COPY config/00-hbp-auth.conf /etc/apache2/sites-enabled/
-# COPY config/ports.conf /etc/apache2/
+COPY config/ports.conf /etc/apache2/
 
-EXPOSE 80
+EXPOSE 8080
 
 RUN mkdir /var/lock/apache2 /var/run/apache2
 CMD . /etc/apache2/envvars && apache2 -DFOREGROUND
