@@ -6,6 +6,14 @@ RUN apt-get update && apt-get install -y \
     libapache2-mod-auth-openidc && \
     rm -rf /var/lib/apt/lists/*
 
+# enable needed modules
+RUN a2enmod auth_openidc && \
+    a2enmod ssl && \
+    a2enmod rewrite && \
+    a2enmod proxy && \
+    a2enmod proxy_http && \
+    a2enmod proxy_wstunnel
+
 # disable default virtual host
 RUN a2dissite 000-default
 
@@ -23,7 +31,7 @@ ENV SERVER_NAME=localhost \
     OIDC_CRYPTO_PASSPHRASE="I should be a random password. Please set me." \
     CLUSTER_IP="0.0.0.0"
 
-COPY projects/nest-desktop/config/nest-desktop-hbp-auth.conf /etc/apache2/sites-enabled/
+COPY projects/nest-desktop/config/00-nest-desktop-hbp-auth.conf /etc/apache2/sites-enabled/
 COPY projects/nest-desktop/config/ports.conf /etc/apache2/
 
 EXPOSE 8080
