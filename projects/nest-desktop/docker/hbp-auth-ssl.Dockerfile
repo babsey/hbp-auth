@@ -31,7 +31,7 @@ ENV SERVER_NAME=localhost \
     OIDC_CRYPTO_PASSPHRASE="I should be a random password. Please set me." \
     CLUSTER_IP="0.0.0.0"
 
-COPY projects/nest-desktop/config/hbp-auth-ssl.conf /etc/apache2/sites-enabled/
+COPY projects/nest-desktop/config/00-nest-desktop-hbp-auth.conf /etc/apache2/sites-enabled/
 COPY projects/nest-desktop/config/ports.conf /etc/apache2/
 
 EXPOSE 8080
