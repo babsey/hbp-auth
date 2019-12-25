@@ -3,7 +3,6 @@
 #
 
 oc project nest-desktop-dev
-oc delete is,dc,svc,route,configMap hbp-auth
 oc delete is,dc,svc,route,configMap nest-desktop-hbp-auth
 oc new-app babsey/nest-desktop-hbp-auth
 oc new-app ./openshift-dev/nest-desktop-hbp-auth.yaml
